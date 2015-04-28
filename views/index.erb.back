@@ -4,30 +4,25 @@
 
 <ul>
 
+  <% if @name != "" %>
+  <% if @is_alived == false %>
+    <p> Your tamagotchi has died. </p>
+  <% else %>
+
+
+    asdf
     <p>
       Name:
-      <%= @name %>
-    </p>
-    <p>
+      <%= @named %>
       Food Level:
-      <%= @food_level %>
-    </p>
-    <p>
+      <%= @food_leveld %>
       Activity Level:
-      <%= @activity_level %>
-    </p>
-    <p>
+      <%= @activity_leveld %>
       Sleep Level:
-      <%= @sleep_level %>
+      <%= @sleep_leveld %>
     </p>
 
-</ul>
-
-<br>
-
-<p>Care for your tamagotchi.</p>
-
-<ul>
+    <p>Care for your tamagotchi.</p>
 
     <form action="/feed_me" method="post">
     <button type="submit">Feed Me</button>
@@ -42,7 +37,19 @@
     </form>
 
     <form action="/pass_time" method="post">
-      <button type="submit">Pass Time</button>
+      <button type="submit">Pass Some Time</button>
     </form>
 
-</ul>
+    </ul>
+ <% end %>
+
+<% else %>
+
+Create a tamagotchi
+
+  <form action="/create" method="post">
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text">
+    <button type="submit">Create Tamagotchi</button>
+  </form>
+<% end %>
