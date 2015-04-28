@@ -9,8 +9,10 @@ class Tamagotchi
     @sleep_level = 10
     @activity_level = 10
     @is_alive = true
-    @@tamagotchis = [ @name, @food_level, @sleep_level, @activity_level, @is_alive ]
+    @timer = Time.new().to_i
+    @@tamagotchis = [ @name, @food_level, @sleep_level, @activity_level, @is_alive, @timer ]
     @@exists = true
+    @ageapplied = 0
   end
 
   define_singleton_method(:all) do
@@ -19,6 +21,18 @@ class Tamagotchi
 
   define_singleton_method(:exists) do
     @@exists
+  end
+
+  define_method(:auto_time) do
+    current_time = Time.new().to_i
+    time_diff =  current_time - @timer
+    age = time_diff./(1).floor()
+    if age > @ageapplied
+      age.-(@ageapplied).times do
+        time_passes
+        @ageapplied = @ageapplied + 1
+      end
+    end
   end
 
   define_method(:name) do
@@ -49,6 +63,11 @@ class Tamagotchi
     @food_level = level
     @@tamagotchis[1] = @food_level
     check_health
+  end
+
+  define_singleton_method(:regenerate) do
+    @@exists = false
+    #@@tamagotchis[5] = true
   end
 
   define_method(:check_health) do

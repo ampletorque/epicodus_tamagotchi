@@ -1,0 +1,6 @@
+tam1 = Tamagotchi.new("tam")
+tam1.save()
+
+@@tamagotchis = [tam1]
+
+Tamagotchi.all().first()
