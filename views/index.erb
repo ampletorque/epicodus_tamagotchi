@@ -1,0 +1,53 @@
+<h1>Tamagotchi!</h1>
+
+<p>Your tamagotchi needs to be taken care of! Treat it nicely!</p>
+
+<ul>
+
+<% if defined?(@name) %>
+  <% if @healthstats[3] == false %>
+    <p> Your tamagotchi has died. </p>
+  <% else %>
+    <p>
+      Name:
+      <% @name %>
+      Food Level:
+      <% @food_level %>
+      Activity Level:
+      <% @activity_level %>
+      Sleep Level:
+      <% @sleep_level %>
+    </p>
+
+    <p>Care for your tamagotchi.</p>
+
+    <form action="/feed_me" method="post">
+    <button type="submit">Feed Me</button>
+    </form>
+
+    <form action="/play_with_me" method="post">
+      <button type="submit">Play With Me</button>
+    </form>
+
+    <form action="/give_me_nap" method="post">
+      <button type="submit">Give Me Nap</button>
+    </form>
+
+    <form action="/pass_time" method="post">
+      <button type="submit">Pass Some Time</button>
+    </form>
+
+    </ul>
+  <% end %>
+
+<% else %>
+
+  Create a tamagotchi
+  <%= defined?(@name) %>
+  <form action="/create" method="post">
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text">
+    <button type="submit">Create Tamagotchi</button>
+  </form>
+
+<% end %>
